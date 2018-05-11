@@ -1,0 +1,49 @@
+{
+	"errcode": 0,
+	"errmsg": "成功",
+	"data": {
+		"level": 1, 
+		"userLevels": [{
+			"currentLevel": "",
+			"upgradeAmtRmb": "0.00",
+			"description": null,
+			"levelName": "铂金", 
+			"upgradeAmt": 0, 
+			"recommendedNum": "", 
+			"referNum": 1, 
+			"type": 2, 
+			"levelMinFee": "0.20000" 
+		}, {
+			"currentLevel": "",
+			"upgradeAmtRmb": "0.00",
+			"description": null,
+			"levelName": "钻石",
+			"upgradeAmt": 0,
+			"recommendedNum": "",
+			"referNum": 2,
+			"type": 2,
+			"levelMinFee": "0.20000"
+		}, {
+			"currentLevel": "",
+			"upgradeAmtRmb": "0.00",
+			"description": "至尊",
+			"levelName": "至尊",
+			"upgradeAmt": 0,
+			"recommendedNum": "",
+			"referNum": 2,
+			"type": 2,
+			"levelMinFee": "0.20000"
+		}, {
+			"currentLevel": 1, 
+			"upgradeAmtRmb": "50.00",
+			"description": null,
+			"levelName": "黄金",
+			"upgradeAmt": 0,
+			"recommendedNum": 1,
+			"referNum": 0,
+			"totalBalanceAmount": "" ,
+			"type": 3,
+			"levelMinFee": "0.20000"
+		}]
+	}
+}

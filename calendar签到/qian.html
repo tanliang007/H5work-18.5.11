@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script type="text/javascript">
+		window.onload = function () {
+			/*720代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;100代表换算比例，这里写100是
+			  为了以后好算,比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+			getRem(750, 100)
+		};
+		window.onresize = function () {
+			getRem(750, 100)
+		};
+
+		function getRem(pwidth, prem) {
+			var html = document.getElementsByTagName("html")[0];
+			var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+			html.style.fontSize = oWidth / pwidth * prem + "px";
+		}
+	</script>
+	<title>签到页面</title>
+	<style>
+		/* 通用样式 */
+
+		html,
+		body,
+		div,
+		span,
+		applet,
+		object,
+		iframe,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		blockquote,
+		pre,
+		a,
+		abbr,
+		acronym,
+		address,
+		big,
+		cite,
+		code,
+		del,
+		dfn,
+		em,
+		img,
+		ins,
+		kbd,
+		q,
+		s,
+		samp,
+		small,
+		strike,
+		strong,
+		sub,
+		sup,
+		tt,
+		var,
+		b,
+		u,
+		i,
+		center,
+		dl,
+		dt,
+		dd,
+		ol,
+		ul,
+		li,
+		fieldset,
+		form,
+		label,
+		legend,
+		table,
+		caption,
+		tbody,
+		tfoot,
+		thead,
+		tr,
+		th,
+		td,
+		article,
+		aside,
+		canvas,
+		details,
+		embed,
+		figure,
+		figcaption,
+		footer,
+		header,
+		menu,
+		nav,
+		output,
+		ruby,
+		section,
+		summary,
+		time,
+		mark,
+		audio,
+		video,
+		input {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font-weight: normal;
+			vertical-align: baseline;
+		}
+
+		/* HTML5 display-role reset for older browsers */
+
+		article,
+		aside,
+		details,
+		figcaption,
+		figure,
+		footer,
+		header,
+		menu,
+		nav,
+		section {
+			display: block;
+		}
+
+		body {
+			line-height: 1;
+		}
+
+		blockquote,
+		q {
+			quotes: none;
+		}
+
+		blockquote:before,
+		blockquote:after,
+		q:before,
+		q:after {
+			content: none;
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		/* custom */
+
+		a {
+			color: #7e8c8d;
+			text-decoration: none;
+			-webkit-backface-visibility: hidden;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		::-webkit-scrollbar {
+			width: 5px;
+			height: 5px;
+		}
+
+		::-webkit-scrollbar-track-piece {
+			background-color: rgba(0, 0, 0, 0.2);
+			-webkit-border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb:vertical {
+			height: 5px;
+			background-color: rgba(125, 125, 125, 0.7);
+			-webkit-border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb:horizontal {
+			width: 5px;
+			background-color: rgba(125, 125, 125, 0.7);
+			-webkit-border-radius: 6px;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			background-color: #f1c40c;
+		}
+
+		body {
+			-webkit-text-size-adjust: none;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+	</style>
+	<style>
+		#box {
+			height: 100%;
+			box-sizing: border-box;
+			padding: 2rem 0 0 0;
+		}
+
+		.alreadywrapper {
+			display: flex;
+			display: -webkit-flex;
+			font-size: 0.3rem;
+			height: 3rem;
+			justify-content: center;
+			background-color: #1a1a1a;
+			text-align: center;
+			margin-top: -2rem;
+		}
+
+		.alreadywrapper .one {
+			flex: 1;
+			color: #f1c40c;
+			text-align: right;
+			line-height: 3rem;
+		}
+
+		.alreadywrapper .two {
+			flex: 1;
+			color: #f1c40c;
+			line-height: 3rem;
+			position: relative;
+			font-size: 0.5rem;
+		}
+
+		.alreadywrapper .two .two-child {
+			border-radius: 50%;
+			width: 1.5rem;
+			height: 1.5rem;
+			line-height: 1.5rem;
+			position: absolute;
+			top: 1.35rem;
+			left: 50%;
+			font-size: 0.6rem;
+			margin-left: -0.75rem;
+			margin-top: -0.75rem;
+			border: 2px solid #fff;
+			text-align: center;
+		}
+
+		.alreadywrapper .two .two-child::after {
+			content: '天';
+			position: absolute;
+			bottom: 0.5rem;
+			height: 0.3rem;
+			line-height: 0.3rem;
+			right: 0.15rem;
+			font-size: 0.3rem;
+		}
+
+		.alreadywrapper .two .two-child::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			width: 0.5rem;
+			font-size: 0.3rem;
+			height: 0.5rem;
+			border-radius: 50%;
+			margin-bottom: -0.25rem;
+			margin-left: -0.25rem;
+			background-image: url('./checkbox_round_1.svg');
+			background-position: 50% 50%;
+			background-size: 0.6rem 0.6rem;
+			background-repeat: no-repeat;
+			background-color: #fff;
+		}
+
+		.alreadywrapper .three {
+			flex: 1;
+			color: #fff;
+			line-height: 3rem;
+		}
+
+		.alreadywrapper .three>a {
+			border: 1px dashed #fff;
+			padding: 8px;
+			color: #fff;
+			border-radius: 10px;
+		}
+
+		/* 日历样式 */
+
+		.tablefather {
+			width: 95%;
+			margin: 0 auto;
+			background: #fff;
+			border-radius: 10px;
+		}
+
+		table {
+			width: 90%;
+			margin: 0 auto;
+			background-color: #fff;
+
+			padding: 30px 0;
+		}
+
+		table>thead {
+			width: 100%;
+			border-bottom: 1px solid #f1c40c;
+		}
+
+		.tablewrapper {
+			background-color: #f1c40c;
+			width: 100%;
+			height: 100% !important;
+		}
+
+		.tablewrapper .nowmonth {
+			font-size: 0.6rem;
+			text-align: center;
+			padding: 0.3rem 0;
+		}
+
+		.week {
+			display: flex;
+		}
+
+		.week>th {
+			flex: 1;
+			font-size: 0.2rem;
+			padding: 0.4rem 0rem 0.2rem 0;
+		}
+
+		tbody {}
+
+		.everyday {
+			float: left;
+			height: 1rem;
+			line-height: 1rem;
+			width: 14.2%;
+		}
+
+		.everyday td {
+			width: 100%;
+			font-size: 0.4rem;
+			display: block;
+			text-align: center;
+		}
+
+		.hasqian.everyday {
+			color: #fff;
+			background: url('./blackMan.svg');
+			background-position: 50% 50%;
+			background-size: 0.7rem 0.7rem;
+			background-repeat: no-repeat;
+		}
+
+		.everyday.notqian {}
+
+		.jintian {
+			background: #fee784;
+		}
+
+		.rewardinfo {
+			text-align: center;
+			font-size: 0.3rem;
+			padding: 0.6rem 0;
+		}
+
+		.mask {
+			position: absolute;
+			width: 5.6rem;
+			height: 5.6rem;
+			z-index: 9;
+			left: 50%;
+			top: 50%;
+			margin-left: -2.8rem;
+			margin-top: -4rem;
+		}
+
+		.mask img {
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+
+		.close {
+			content: 'X';
+			text-align: center;
+			position: absolute;
+			top: 0px;
+			font-size: 0.5rem;
+			right: 0px;
+			border-radius: 50%;
+			width: 0.5rem;
+			height: 0.5rem;
+			background: skyblue;
+		}
+
+		.close img {
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+
+		.makemoney {
+			position: absolute;
+			bottom: 0px;
+			left: 50%;
+			height: 0.65rem;
+			color: #fff;
+			border-radius: 5px;
+			line-height: 0.65rem;
+			width: 3.5rem;
+			font-size: 0.4rem;
+			transform: translate(-50%, 7px);
+			text-align: center;
+			background-color: #fe0100;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box">
+		<div class="alreadywrapper">
+			<div class="one">已经连续签到</div>
+			<div class="two">
+				<div class="two-child">31</div>
+			</div>
+			<div class="three">
+				<a href="./rule.html">签到规则</a>
+			</div>
+		</div>
+		<div class="tablewrapper">
+			<div class="nowmonth">2018年4月</div>
+			<div class="tablefather">
+				<table cellspacing='0'>
+					<thead>
+						<tr class="week">
+							<th>星期日</th>
+							<th>星期一</th>
+							<th>星期二</th>
+							<th>星期三</th>
+							<th>星期四</th>
+							<th>星期五</th>
+							<th>星期六</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr @click='Signtoday(item,$event)' :class="[ item.day!='' ?  (item.isSelect == 'Y' ? 'hasqian' : 'notqian'):'' , 'everyday', typeof(item.day)==='string'&&item.day!='' ? 'jintian': '']"
+						  v-for="(item,index) in CalendarArr">
+							<td>{{ item.isSelect == 'Y' ? "":item.day }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="rewardinfo">
+				恭喜您获得下个月领取礼包包邮1次
+			</div>
+		</div>
+		<!-- 弹窗 -->
+		<div class="mask" v-if="show">
+			<img src="./beijing_tanchuang@3x.png" alt="">
+			<div class="close" @click="hidemodal">
+				<img src="./tanchuang_guanbi@3x.png" alt="">
+			</div>
+			<div class="makemoney" @click="Share">点击分享赚钱吧~</div>
+		</div>
+	</div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+<script>
+	//判断当前年份是否是闰年(闰年2月份有29天，平年2月份只有28天)
+
+	var config = {
+		get: function (url, fn) {
+			var xhr = new XMLHttpRequest(); // XMLHttpRequest对象用于在后台与服务器交换数据          
+			xhr.open('GET', url, true);
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4 && xhr.status == 200 || xhr.status == 304) { // readyState == 4说明请求已完成
+					fn.call(this, xhr.responseText); //从服务器获得数据
+				}
+			};
+			xhr.send();
+		},
+		post: function (url, data, fn) { // datat应为'a=a1&b=b1'这种字符串格式，在jq里如果data为对象会自动将对象转成这种字符串格式
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", url, true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // 添加http头，发送信息至服务器时内容编码类型
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) { // 304未修改
+					console.log(1);
+					fn.call(this, xhr.responseText);
+				}
+			};
+			xhr.send(data);
+		},
+		getCalendar: function () {
+			var empty = 0; // 记录前面为空数量
+			var backempty = 0;
+			var i,
+				k,
+				arr = [],
+				today = new Date('2018/04/19'), // 获取当前日期
+				y = today.getFullYear(), // 获取日期中的年份
+				m = today.getMonth(), // 获取日期中的月份(需要注意的是：月份是从0开始计算，获取的值比正常月份的值少1)
+				d = today.getDate(), // 获取日期中的日(方便在建立日期表格时高亮显示当天)
+				firstday = new Date(y, m, 1), // 获取当月的第一天
+				dayOfWeek = firstday.getDay(), // 判断第一天是星期几(返回[0-6]中的一个，0代表星期天，1代表星期一，以此类推)
+				days_per_month = new Array(31, 28 + this.isLeap(y), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31), //创建月份数组
+				str_nums = Math.ceil((dayOfWeek + days_per_month[m]) / 7); //确定日期表格所需的行数
+
+			for (i = 0; i < str_nums; i += 1) { //二维数组创建日期表格
+				for (k = 0; k < 7; k++) {
+					var obj = {};
+					var idx = 7 * i + k; // 从0开始
+					// console.log(idx)
+					var date = idx - dayOfWeek + 1; //将当月的1号与星期进行匹配
+					if (date <= 0) {
+						empty++
+					} else if (date > days_per_month[m]) {
+						backempty++
+					}
+					(date <= 0 || date > days_per_month[m]) ? date = '': date = idx - dayOfWeek + 1; //索引小于等于0或者大于月份最大值就用空表格代替
+					date == d ? date = date.toString() : date = date; //高亮显示当天
+					arr.push({
+						'day': date,
+						'isSelect': "N"
+					});
+				}
+			}
+			// console.log('-------'+empty)
+			return [arr, empty, backempty];
+		},
+		isLeap: function (year) {
+			return year % 4 == 0 ? (year % 100 != 0 ? 1 : (year % 400 == 0 ? 1 : 0)) : 0;
+		}
+	}
+</script>
+<script>
+	var app = new Vue({
+		el: '#box',
+		data: {
+			CalendarArr: [],
+			qiandaoArray: {
+				today: '2018.4.19',
+				arr: ['N', 'Y', 'Y', 'Y', 'Y', 'N', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y',
+					'Y', 'Y', 'Y', 'Y', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N'
+				]
+			},
+			show: false //控制弹窗	
+		},
+		created() {
+			this.CalendarArr = config.getCalendar()[0]
+			console.log(config.getCalendar()[2])
+			var abbr = []
+			console.log()
+			var j = 0;
+			for (var index = config.getCalendar()[1]; index < this.CalendarArr.length - config.getCalendar()[2]; index++) {
+				var element = this.CalendarArr[index];
+				element.isSelect = this.qiandaoArray.arr[j]
+				j++;
+				// console.log( element.isSelect )
+			}
+			console.log(JSON.stringify(this.CalendarArr))
+		},
+		mounted: function () {},
+		updated() {
+			console.log(this.qiandaoArray.arr[18])
+		},
+		methods: {
+			Signtoday(curday, e) {
+				// console.log(curday)
+				if (curday.day == 19) { //是当天日期
+					console.log(curday)
+					if (curday.isSelect == 'Y') {
+						alert('已经签到了')
+						// 发请求已经签到
+
+					} else {
+						curday.isSelect = 'Y'
+						this.show = true
+					}
+				}
+			},
+
+			hidemodal() {
+				this.show = false
+			},
+
+			Share() {
+				console.log('跟原生交互的事件')
+				var u = navigator.userAgent;
+				var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+				var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+				if (isAndroid) {
+					// Android.showToast('toast');
+					alert('安卓')
+				} else if (isiOS) {
+					window.webkit.messageHandlers.Share.postMessage(666);
+					alert('IOS')
+				}
+			}
+		}
+	})
+</script>

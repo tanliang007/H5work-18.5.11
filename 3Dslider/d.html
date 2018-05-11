@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script type="text/javascript">
+		window.onload = function () {
+			/*720代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;100代表换算比例，这里写100是
+			  为了以后好算,比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+			getRem(750, 100)
+		};
+		window.onresize = function () {
+			getRem(750, 100)
+		};
+
+		function getRem(pwidth, prem) {
+			var html = document.getElementsByTagName("html")[0];
+			var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+			html.style.fontSize = oWidth / pwidth * prem + "px";
+		}
+	</script>
+	<title>滑动轮播图</title>
+	<style>
+		/* 通用样式 */
+
+		html,
+		body,
+		div,
+		span,
+		applet,
+		object,
+		iframe,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		blockquote,
+		pre,
+		a,
+		abbr,
+		acronym,
+		address,
+		big,
+		cite,
+		code,
+		del,
+		dfn,
+		em,
+		img,
+		ins,
+		kbd,
+		q,
+		s,
+		samp,
+		small,
+		strike,
+		strong,
+		sub,
+		sup,
+		tt,
+		var,
+		b,
+		u,
+		i,
+		center,
+		dl,
+		dt,
+		dd,
+		ol,
+		ul,
+		li,
+		fieldset,
+		form,
+		label,
+		legend,
+		table,
+		caption,
+		tbody,
+		tfoot,
+		thead,
+		tr,
+		th,
+		td,
+		article,
+		aside,
+		canvas,
+		details,
+		embed,
+		figure,
+		figcaption,
+		footer,
+		header,
+		menu,
+		nav,
+		output,
+		ruby,
+		section,
+		summary,
+		time,
+		mark,
+		audio,
+		video,
+		input {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font-weight: normal;
+			vertical-align: baseline;
+		}
+
+		/* HTML5 display-role reset for older browsers */
+
+		article,
+		aside,
+		details,
+		figcaption,
+		figure,
+		footer,
+		header,
+		menu,
+		nav,
+		section {
+			display: block;
+		}
+
+		body {
+			line-height: 1;
+		}
+
+		blockquote,
+		q {
+			quotes: none;
+		}
+
+		blockquote:before,
+		blockquote:after,
+		q:before,
+		q:after {
+			content: none;
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		/* custom */
+
+		a {
+			color: #7e8c8d;
+			text-decoration: none;
+			-webkit-backface-visibility: hidden;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		::-webkit-scrollbar {
+			width: 5px;
+			height: 5px;
+		}
+
+		::-webkit-scrollbar-track-piece {
+			background-color: rgba(0, 0, 0, 0.2);
+			-webkit-border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb:vertical {
+			height: 5px;
+			background-color: rgba(125, 125, 125, 0.7);
+			-webkit-border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb:horizontal {
+			width: 5px;
+			background-color: rgba(125, 125, 125, 0.7);
+			-webkit-border-radius: 6px;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			-webkit-text-size-adjust: none;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+	</style>
+	<style>
+		body {
+			background-color: #ececec;
+		}
+
+		.swiper-slide {
+			border-radius: 5px;
+			padding-bottom: 2rem;
+		}
+
+		.swiper-child {
+			position: relative;
+		}
+
+		.swiper-slide .wrapperchild {
+
+			background-color: #3797f9;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			font-size: 0.3rem;
+			color: #fff;
+			padding: 0.3rem 0;
+			padding-bottom: 0.7rem;
+			border-radius: 10px;
+		}
+
+		.swiper-slide .wrapperchild img {
+			width: 1.5rem;
+			height: 1.5rem;
+			display: block;
+			margin: 0 auto;
+			margin-bottom: 0.4rem;
+		}
+
+		.swiper-slide .wrapperchild .child-content {
+			width: 65%;
+			letter-spacing: 0;
+			margin: 0 auto;
+		}
+
+		.swiper-slide .wrapperchild .levelinfo {
+			text-align: center;
+			margin-bottom: 0.2rem;
+		}
+
+		.swiper-slide .wrapperchild .level {
+			text-align: center;
+			margin-bottom: 0.4rem;
+		}
+
+		.swiper-slide .wrapperchild .rate {
+			margin-bottom: 0.2rem;
+		}
+
+		.swiper-slide .wrapperchild .earnings {
+			margin-bottom: 0.2rem;
+		}
+
+		.swiper-slide .wrapperchild .introduce1 {
+			margin-bottom: 0.2rem;
+			padding-left: 0.3rem;
+		}
+
+		.swiper-slide .wrapperchild .introduce2 {
+			margin-bottom: 0.2rem;
+			line-height: 0.5rem;
+			padding-left: 0.3rem;
+		}
+
+		.swiper-slide .wrapperchild .introduce3 {
+			margin-bottom: 0.25rem;
+			text-align: center;
+			letter-spacing: 0;
+		}
+
+		.swiper-slide .wrapperchild .introduce3 span {
+			color: #fbea2a;
+			font-size: 0.4rem;
+		}
+
+		.swiper-slide .wrapperchild .introduce4 {
+			text-align: center;
+			letter-spacing: 0;
+		}
+
+		.swiper-slide .wrapperchild .introduce4 span {
+			color: #fbea2a;
+			font-size: 0.4rem;
+		}
+
+		.swiper-slide .swiper-child .fixed {
+			position: absolute;
+			bottom: 0px;
+			left: 50%;
+			transform: translate(-50%, 1.8rem);
+			z-index: 3;
+		}
+
+		.swiper-slide .swiper-child .fixed .fixed-one {
+			background-color: #3797f9;
+			font-size: 0.4rem;
+			height: 0.8rem;
+			line-height: 0.8rem;
+			color: #fff;
+			margin-bottom: 0.4rem;
+			padding: 0 1.2rem;
+			border-radius: 20px;
+			text-align: center;
+			white-space: nowrap;
+			border: 3px solid #fff;
+		}
+
+		.swiper-slide .swiper-child .fixed .fixed-two {
+			background-color: #3797f9;
+			color: #fff;
+			height: 0.8rem;
+			line-height: 0.8rem;
+			padding: 0 1.2rem;
+			border-radius: 20px;
+			text-align: center;
+			font-size: 0.4rem;
+			white-space: nowrap;
+			border: 3px solid #fff;
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/css/swiper.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.js"></script>
+</head>
+
+<body>
+	<div style="margin-top:1.5rem;">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+
+				<div class="swiper-slide">
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	function GetRequest() {
+		var url = location.search; //获取url中"?"符后的字串 
+		var theRequest = new Object();
+		if (url.indexOf("?") != -1) {
+			var str = url.substr(1);
+			strs = str.split("&");
+			for (var i = 0; i < strs.length; i++) {
+				theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+			}
+		}
+		return theRequest;
+	}
+	var param = GetRequest();
+	var swiperNumber = "";
+	$.ajax({
+		// headers: {
+		// 	token: param.token,
+		// 	appId: param.appId
+		// },
+		url: './1.json', 
+		data: {},
+		success: function (res) {
+			console.log(res)
+			$(".swiper-wrapper").empty();
+			$.each(res.data.userLevels, function (index, obj) {
+				if (obj.currentLevel == res.data.level) {
+					swiperNumber = index
+				}
+				var str =
+					'	<div class="swiper-slide">' +
+					'<div class="swiper-child">' +
+					'<div class="wrapperchild">' +
+					'<img src="./timg.jpg" alt="">' +
+					'<p class="levelinfo">. ' + obj.levelName + ' .</p>' +
+					'<p class="level">您当前等级</p>' +
+					'<div class="child-content">' +
+					'<p class="rate">享受费率: &nbsp;低至' + obj.levelMinFee + '%</p>' +
+					'<p class="earnings">享受收益:</p>' +
+					'<p class="introduce1">员工无收益</p>' +
+					'<p class="introduce2">推荐5人或付费58元可升级为店长,可享受店长待遇</p>' +
+					'</div>' +
+					'<p class="introduce3" style=visibility:' + (obj.currentLevel == '' ? "hidden" : "visible") + ';>您目前已推<span>' +
+					obj.recommendedNum + '</span>人</p>' +
+					'<p class="introduce4" style=visibility:' + (obj.currentLevel == '' ? "hidden" : "visible") + ';>还差<span>' +
+					obj.referNum + '</span>人升级为店长</p>' +
+					'</div>' +
+					'<div class="fixed" style=visibility:' + (obj.currentLevel == '' ? "hidden" : "visible") + ';>' +
+					'<div class="fixed-one" onclick=Pay(' + obj.upgradeAmtRmb + ')>付费升级</div>' +
+					'<div class="fixed-two" onclick=Share()>分享升级</div>' +
+					'</div>' +
+					'</div>' +
+					'</div>';
+				$(".swiper-wrapper").append(str);
+			});
+			//重点是要等上面的数据渲染完，再执行swiper的方法，这样轮播图就可以自由滑动了  
+			var mySwiper = new Swiper('.swiper-container', {
+				// parallax : true,
+				initialSlide: swiperNumber,
+				updateOnImagesReady: true,
+				setWrapperSize: true,
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+				effect: 'coverflow', //3d滑动
+				spaceBetween: '20%',
+				setWrapperSize :true,
+				centeredSlides: true,
+				slidesPerView: 1.25,
+				coverflowEffect: {
+					rotate: 0, //设置为0
+					stretch: 0,
+					depth: 100,
+					modifier: 3,
+					slideShadows: false
+				},
+				observer: true, //修改swiper自己或子元素时，自动初始化swiper
+				observeParents: true //修改swiper的父元素时，自动初始化swiper
+			});
+
+		},
+		fail: function(res) {
+			alert(res)
+		}
+	});
+
+	function Pay(obj) {
+		console.log(obj)
+		if (obj == 0 || obj == "") {
+			return
+		}
+		var u = navigator.userAgent;
+		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		if (isAndroid) {
+			// Android.showToast('toast');
+		} else if (isiOS) {
+			window.webkit.messageHandlers.EJPay.postMessage(obj);
+		}
+	}
+
+	function Share() {
+		console.log('34543534')
+		var u = navigator.userAgent;
+		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		if (isAndroid) {
+			// Android.showToast('toast');
+		} else if (isiOS) {
+			window.webkit.messageHandlers.EJShare.postMessage(null);
+		}
+	}
+</script>

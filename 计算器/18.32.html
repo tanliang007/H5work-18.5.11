@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+		body{}
+		html,body{
+			width: 100%;
+			background:#eee;
+		}
+		.avater{
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			display: block;
+			margin: 0 auto;
+		}
+		table{
+			position: absolute;
+			bottom:0px;
+			width:100%;	
+		}
+		tbody{
+			display: block;
+		}
+		table tr{
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			width: 100%;
+		}
+		table tr td{
+			flex:1;
+		}
+		table tr td input{
+			width: 100%;
+			height: 50px;
+			border: none;
+			border-left:1px solid #ccc;
+			border-bottom:1px solid #ccc;
+			background: #fff;
+			font-size: 25px;
+			outline:0;
+			-webkit-appearance:none;
+		}
+		#btnEnter{
+			display: block;
+			width: 80%;
+			color: #fff;
+			background: #ff3358;
+			outline:0;
+			border: none;
+			height: 40px;
+			margin: 20px auto 0px;
+			-webkit-appearance:none;
+		}
+		.shuru{
+			height: 40px;
+			background: #fff;
+			text-align: center;
+			margin-top: 10px;
+		}
+		#txtNum{
+			font-size: 15px;
+			outline:0;
+			border: none;
+		}
+		header{
+			background: #fff;
+			text-align: center;
+			height: 40px;
+			font-size: 20px;
+			line-height: 40px;
+			margin-bottom: 10px;
+		}
+		#username{
+			text-align: center;
+			height: 40px;
+			font-size: 20px;
+			line-height: 40px;
+		}
+		.arrow{
+		width: 0;
+    height: 0;
+		margin: 3px auto;	
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 10px solid #ccc;
+		}
+		tbody{
+			width: 100%;
+		}
+		.mask{
+			position: absolute;
+			top: 0px;
+			left:0px;
+			z-index: 30;
+			width: 100%;
+			height: 100%;
+			display: none;
+			background:rgba(0,0,0,0.6);
+		}
+		.layer{
+			width: 90%;
+			text-align: center;
+			position: fixed;
+			z-index: 40;
+			top:50%;
+			background: #fff;
+			left:50%;
+			display: none;
+			transform: translate(-50%,-50%);
+		}
+	</style>
+</head>
+<body>
+	<header>付款金额</header>
+	<img src="./1.jpeg" alt="" class="avater">
+	<div id="username">名称</div>
+	<div style="height: 60px"> 
+			<div class="shuru">
+					<span style="display:inline-block;height:40px;line-height:40px;">金额</span> 			
+					<input  type="text" id="txtNum" onfocus="aa()" readonly/>  
+					<span style="display:inline-block;height:40px;line-height:40px;color:#ccc;">填写金额¥</span>	
+			</div> 
+			<input id="btnEnter" type="button" value="确认支付" onclick="return btnEnter_onclick()" />
+	<table >
+		  <tbody>
+					<tr><td style="	background: #fff;"><div class="arrow" onclick="return hide()"></div></td></tr>  
+					<tr>   
+					<td> <input id="Button1" type="button" value="1"  style="border-top:1px solid #ccc;" onclick="return btnNum_onclick(1)" /></td>  
+					<td> <input id="Button2" type="button" value="2"  style="border-top:1px solid #ccc;"  onclick="return btnNum_onclick(2)"/></td>  
+					<td> <input id="Button3" type="button" value="3"   style="border-top:1px solid #ccc;" onclick="return btnNum_onclick(3)"/></td>  
+					</tr>  
+					<tr>  
+					<td> <input id="Button4" type="button" value="4" onclick="return btnNum_onclick(4)"/></td>  
+					<td> <input id="Button5" type="button" value="5" onclick="return btnNum_onclick(5)"/></td>  
+					<td> <input id="Button6" type="button" value="6" onclick="return btnNum_onclick(6)"/></td>  
+					</tr>  
+					<tr>  
+					 <td><input id="Button7" type="button" value="7" onclick="return btnNum_onclick(7)"/></td>  
+					 <td><input id="Button8" type="button" value="8" onclick="return btnNum_onclick(8)"/></td>  
+					 <td><input id="Button9" type="button" value="9" onclick="return btnNum_onclick(9)"/></td>  
+					 </tr>  
+					<tr> 
+					 <td><input id="Button." type="button" value="." onclick="return btnNum_onclick('.')" /></td>  
+					 <td><input id="Button0" type="button" value="0" onclick="return btnNum_onclick(0)" /></td>  
+					 <td> <input id="ButtonDel" type="button" value="删除" onclick="return delText()"/></td>   
+					 </tr>  
+			</tbody>
+			<br/>
+			<br/>  				
+	</div>  
+	
+	<div class="layer">
+			<div  style="padding:10px 0;">	请输入正确的格式(整数或者两位以内小数)</div>
+			<div onclick="sure()"  style="background:#26a2ff;padding:10px 0;color:#fff;">确认</div>
+	</div>
+	<div class="mask" >
+		
+	</div>
+</body>
+</html>
+<script>
+	
+function btnEnter_onclick() {  
+		var value = document.getElementById("txtNum").value;  
+		console.log(	NumberCheck(value) )
+		if(NumberCheck(value)){
+
+		}else{
+			document.querySelector('.mask').style.display='block';
+			document.querySelector('.layer').style.display='block';
+			return;
+		}
+		//ajax
+	var xhr = new XMLHttpRequest();
+  //设置请求的类型及url
+	xhr.open('post', '02.post.php' );
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	//发送请求
+	xhr.send("money="+value);
+	xhr.onreadystatechange = function () {
+			// 这步为判断服务器是否正确响应
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			console.log(xhr.responseText);
+		} 
+
+	};
+
+  }  
+	function btnNum_onclick(i) {  
+			txtNum.value=txtNum.value+i;  
+	}          
+	function clearText() {  
+			document.getElementById("txtNum").value = "";  
+	}       
+	function delText() {  
+			var value = document.getElementById("txtNum").value;  
+			var str = value.substring(0,value.length-1);  
+			document.getElementById("txtNum").value = str;  
+	}
+  function aa(e){
+		document.querySelector('table tbody').style.display='block';
+	}
+	function hide(){
+		document.querySelector('table tbody').style.display='none';
+	}
+
+	function NumberCheck(num) 
+ {
+  var re=/^[1-9]{1}\d*(\.\d{1,2})?$/;	
+  return  re.test(num);
+ }
+ function sure(){
+	document.querySelector('.mask').style.display='none';
+	document.querySelector('.layer').style.display='none';
+ }
+</script>

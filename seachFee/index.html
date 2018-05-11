@@ -1,0 +1,94 @@
+<html>
+	<meta charset="utf-8">
+<head>
+</head>
+<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	table.gridtable {
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+		margin-left: 20px;
+ }
+ table.gridtable th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #dedede;
+ }
+ table.gridtable td {
+     border-width: 1px;
+     padding: 8px;
+		 font-size: 25px;
+     border-style: solid;
+     border-color: #666666;
+		 color:blue;
+     background-color: #ffffff;
+ }
+	button{
+		margin-left: 20px;
+	}
+  
+</style>
+<body>
+  
+<form>
+	<input type="text" name="user" id="user" style="width: 200px;height:30px;margin:10px 0px 0 20px;">
+	  <br/><br/>
+	  <button   onclick="cal()" type="button"> 输入后查询</button>
+		<br/>
+		<br/>
+	 
+</form>
+
+<table  class="gridtable" >
+		
+</table>    
+
+</body>
+<script src="./jquery.js"></script>
+
+
+</script>
+<script type="text/javascript">
+	
+	function cal() {
+		var url = "http://172.31.0.209:8090/ccpay/api/user/balance";
+		var userId = $("#user").val();
+		
+		$.ajax({
+		    type: 'POST',
+		    url: url,
+		    dataType: 'json',
+		    data: {
+		        userId: userId
+		}})
+		.done(function(data) {
+			 		console.log(data)
+			    if (1 === data.code) {
+			    console.log(data.data);
+					var string="<tr><th class='left'>信息列项</th><th class='right'>用户信息</th></tr>";
+					for(var i in data.data){
+						string+='<tr><td>'+i+'</td><td style="color:#333;">'+data.data[i]+'</td></tr>';	
+					}		
+					$('table').html(string);
+			    } else{
+						$('table').html('');
+			        console.log("新建失败")
+			    }
+		})
+		.fail(function () {
+			    console.log('提交失败');
+		}); 
+	}
+
+
+</script>
+</html>

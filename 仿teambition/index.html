@@ -1,0 +1,175 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script type="text/javascript">
+		// (function () {
+		// 	function setRem() {
+		// 		var w = document.documentElement.clientWidth;
+		// 		w = w > 750 ? 750 : w;
+		// 		document.querySelector('html').style.fontSize = w / 7.5 + 'px';
+		// 		console.log(w);
+		// 	};
+		// 	setRem();
+		// 	window.onresize = function () {
+		// 		setRem();
+		// 	};
+		// })()
+	</script>
+	<style>
+		.clearfloat::before,
+		.clearfloat::after {
+			content: "";
+			display: block;
+			clear: both;
+			line-height: 0;
+			visibility: hidden;
+			height: 0;
+		}
+
+		.clearfloat {
+			zoom: 1;
+		}
+
+		.inbox-view {
+			position: fixed;
+			z-index: 3;
+			top: 48px;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			background-size: cover;
+			background-position: 50%;
+			background-color: hsla(0, 0%, 93%, .96);
+		}
+
+		.inbox-view .inbox-header {
+			position: absolute;
+			width: 100%;
+			top: 0;
+			right: 0;
+			background-color: transparent;
+
+		}
+
+		.sub-navigator {
+			border-bottom: 1px solid #d9d9d9;
+		}
+
+		.inbox-wrap {
+			/* padding: 0 100px; */
+			width: 100%;
+		}
+
+		.inbox-view .inbox-side {
+			width: 38%;
+			height: 50px;
+			line-height: 50px;
+			float: left;
+			padding-left: 120px;
+			box-sizing: border-box;
+		}
+
+		.message-detail-wrapper {
+			width: 62%;
+			height: 50px;
+			line-height: 50px;
+			box-sizing: border-box;
+			float: left;
+			border-left: 1px solid #d9d9d9;
+		}
+
+		.inbox-view .close-float-handler {
+			position: absolute;
+			top: 0;
+			z-index: 5;
+			right: 4px;
+			padding: 15px 16px;
+		}
+
+		.content {
+			position: relative;
+			height: 100%;
+			padding: 50px 0 0;
+			/* padding:50px 100px;  */
+		}
+
+		.content .content-side {
+			width: 38%;
+			float: left;
+			height: 100%;
+			box-sizing: border-box;
+			border-bottom: 1px solid #d9d9d9;
+			padding: 20px 20px 20px 120px;
+			/* background: blueviolet; */
+		}
+
+		.content .content-detail-wrapper {
+			width: 62%;
+			float: left;
+			height: 100%;
+			/* background:salmon; */
+			box-sizing: border-box;
+			padding-right: 120px;
+			border-left: 1px solid #d9d9d9;
+			border-bottom: 1px solid #d9d9d9;
+		}
+
+		.content .content-sideinnner {
+			background: red;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<script src="./jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div class="btn1">切换显示</div>
+	<div class="inbox-view">
+		<header class="inbox-header sub-navigator clearfloat">
+			<div class="inbox-wrap flex-horiz">
+				<div class="inbox-side flex-static">
+					上左
+				</div>
+				<div class="message-detail-wrapper flex-fill">
+					上右
+				</div>
+			</div>
+			<div class="close-float-handler" >
+				<span class="icon icon-remove">X</span>
+			</div>
+		</header>
+		<div class="content">
+			<div class="content-side">
+				<div class="content-sideinnner">23434</div>
+			</div>
+			<div class="content-detail-wrapper">
+				<div class="content-detail-child">
+					下右下右
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
+<script>
+	$(document).ready(function () {
+		$(".btn1").click(function () {
+			$(".inbox-view").slideToggle();
+		});
+
+		console.log($('.close-float-handler'));
+		$('.close-float-handler').click(function(){
+
+			$(".inbox-view").fadeOut()
+		});
+
+	})
+
+</script>

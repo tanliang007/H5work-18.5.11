@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script type="text/javascript">
+		window.onload = function () {
+			/*720代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;100代表换算比例，这里写100是
+			  为了以后好算,比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+			getRem(750, 100)
+		};
+		window.onresize = function () {
+			getRem(750, 100)
+		};
+
+		function getRem(pwidth, prem) {
+			var html = document.getElementsByTagName("html")[0];
+			var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+			html.style.fontSize = oWidth / pwidth * prem + "px";
+		}
+	</script>
+	<title>签到规则</title>
+	<style>
+		/* 通用样式 */
+
+		html,
+		body,
+		div,
+		span,
+		applet,
+		object,
+		iframe,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		blockquote,
+		pre,
+		a,
+		abbr,
+		acronym,
+		address,
+		big,
+		cite,
+		code,
+		del,
+		dfn,
+		em,
+		img,
+		ins,
+		kbd,
+		q,
+		s,
+		samp,
+		small,
+		strike,
+		strong,
+		sub,
+		sup,
+		tt,
+		var,
+		b,
+		u,
+		i,
+		center,
+		dl,
+		dt,
+		dd,
+		ol,
+		ul,
+		li,
+		fieldset,
+		form,
+		label,
+		legend,
+		table,
+		caption,
+		tbody,
+		tfoot,
+		thead,
+		tr,
+		th,
+		td,
+		article,
+		aside,
+		canvas,
+		details,
+		embed,
+		figure,
+		figcaption,
+		footer,
+		header,
+		menu,
+		nav,
+		output,
+		ruby,
+		section,
+		summary,
+		time,
+		mark,
+		audio,
+		video,
+		input {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font-weight: normal;
+			vertical-align: baseline;
+		}
+
+		/* HTML5 display-role reset for older browsers */
+
+		article,
+		aside,
+		details,
+		figcaption,
+		figure,
+		footer,
+		header,
+		menu,
+		nav,
+		section {
+			display: block;
+		}
+
+		body {
+			line-height: 1;
+		}
+
+		blockquote,
+		q {
+			quotes: none;
+		}
+
+		blockquote:before,
+		blockquote:after,
+		q:before,
+		q:after {
+			content: none;
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		/* custom */
+
+		a {
+			color: #7e8c8d;
+			text-decoration: none;
+			-webkit-backface-visibility: hidden;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		::-webkit-scrollbar {
+			width: 5px;
+			height: 5px;
+		}
+
+		::-webkit-scrollbar-track-piece {
+			background-color: rgba(0, 0, 0, 0.2);
+			-webkit-border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb:vertical {
+			height: 5px;
+			background-color: rgba(125, 125, 125, 0.7);
+			-webkit-border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb:horizontal {
+			width: 5px;
+			background-color: rgba(125, 125, 125, 0.7);
+			-webkit-border-radius: 6px;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			-webkit-text-size-adjust: none;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+	</style>
+	<style>
+		.text{
+			font-size:0.3rem;
+			padding: 0.4rem 0.4rem 0.6rem 0.4rem;
+		}
+		.text > div{
+			line-height: 0.6rem;
+			border-bottom:1px dashed #b1b1b1;
+		}
+		.tip{
+			font-size:0.32rem;
+			line-height: 0.8rem;
+			padding: 0 0.4rem;
+		}
+		.tip>.ti{
+			font-size:0.32rem;
+			font-weight:bold;
+			line-height: 0.5rem;
+			background-color: #f9fd03;
+			padding: 0 0.2rem;
+			display: inline-block;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="text">
+		<div>1) 每天打开赚钱趣APP，点击下调费率每日签到,没成功签到都能获得10个钱币</div>
+		<div>2) 连续签到18天,未满一个月,次月包邮一次(富农及以上级别)</div>
+		<div>3) 连续签到一个月,获得次月十年礼包包邮2次(财主)</div>
+		<div>4) 连续签到一个月,获得次月十年礼包包邮3次(合伙人及以上)</div>
+	</div>
+	<div class="tip">
+		<span class="ti">温馨提示</span>
+		<span>如果在连续签到了17天后,第18天忘记签到,连续签到次数就此清零,需要重新累计连续签到次数,因此请记住每天都要来签到哦</span>
+	</div>
+	<div>
+		<img  style="width:3.5rem;display: block;margin:0.2rem auto;"	src="./qiandao_chenggong@3x.png" alt="">
+	</div>
+</body>
+
+</html>
+<script src="./vue.js"></script>
+<script>
+	//判断当前年份是否是闰年(闰年2月份有29天，平年2月份只有28天)
+	var config = {
+		get: function (url, fn) {
+			var xhr = new XMLHttpRequest(); // XMLHttpRequest对象用于在后台与服务器交换数据          
+			xhr.open('GET', url, true);
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4 && xhr.status == 200 || xhr.status == 304) { // readyState == 4说明请求已完成
+					fn.call(this, xhr.responseText); //从服务器获得数据
+				}
+			};
+			xhr.send();
+		},
+		post: function (url, data, fn) { // datat应为'a=a1&b=b1'这种字符串格式，在jq里如果data为对象会自动将对象转成这种字符串格式
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", url, true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // 添加http头，发送信息至服务器时内容编码类型
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) { // 304未修改
+					console.log(1);
+					fn.call(this, xhr.responseText);
+				}
+			};
+			xhr.send(data);
+		}
+	}
+</script>
+<script>
+	var app = new Vue({
+		el: '#box',
+		data: {
+		},
+		created() {
+
+		},
+		mounted: function () {},
+		updated() {
+		},
+		methods: {
+
+		}
+	})
+</script>

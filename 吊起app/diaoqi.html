@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<p id="openAPP">APK客户端下载</p>
+	<a href="night://lolita">我</a>
+</body>
+</html>
+<script>
+	
+  function openApps(e){
+		console.log(e);
+		var u = navigator.userAgent;	
+		alert(u);
+		if (/(iPhone|iPad|iPod|iOS)/i.test(u)) {
+			//ios终端
+			window.location.href = 'wake://';
+			setTimeout(function(){
+				//填写ios跳转的App Store地址
+				window.location.href = 'https://itunes.apple.com/cn/app/id1267249931?mt=8';
+			},5000);	
+
+		} else if(/(Android)/i.test(u)){
+			//android
+			alert('android')
+			if (u.toLowerCase().match(/MicroMessenger/i)=="micromessenger") {
+				alert('请用其他浏览器打开');
+				return;
+			} 
+			window.location.href = 'night://lolita';
+			setTimeout(function(){
+				//填写Android安装包的下载地址
+				window.location.href = 'http://www.baidu.com';
+			},5000);
+		}
+	}
+	var openAPP=document.getElementById('openAPP');
+	openAPP.onclick=openApps; 
+</script>

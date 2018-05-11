@@ -1,0 +1,470 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script type="text/javascript">
+		(function () {
+			function setRem() {
+				var w = document.documentElement.clientWidth;
+				w = w > 750 ? 750 : w;
+				document.querySelector('html').style.fontSize = w / 7.5 + 'px';
+				console.log(w);
+			};
+			setRem();
+			window.onresize = function () {
+				setRem();
+			};
+		})()
+	</script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/css/swiper.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.js"></script>
+	<script src="./jquery.min.js"></script>
+	<style>
+		/* 通用样式 */
+
+		html,
+		body,
+		div,
+		span,
+		applet,
+		object,
+		iframe,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		blockquote,
+		pre,
+		a,
+		abbr,
+		acronym,
+		address,
+		big,
+		cite,
+		code,
+		del,
+		dfn,
+		em,
+		img,
+		ins,
+		kbd,
+		q,
+		s,
+		samp,
+		small,
+		strike,
+		strong,
+		sub,
+		sup,
+		tt,
+		var,
+		b,
+		u,
+		i,
+		center,
+		dl,
+		dt,
+		dd,
+		ol,
+		ul,
+		li,
+		fieldset,
+		form,
+		label,
+		legend,
+		table,
+		caption,
+		tbody,
+		tfoot,
+		thead,
+		tr,
+		th,
+		td,
+		article,
+		aside,
+		canvas,
+		details,
+		embed,
+		figure,
+		figcaption,
+		footer,
+		header,
+		menu,
+		nav,
+		output,
+		ruby,
+		section,
+		summary,
+		time,
+		mark,
+		audio,
+		video,
+		input {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font-weight: normal;
+			vertical-align: baseline;
+		}
+
+		/* HTML5 display-role reset for older browsers */
+
+		article,
+		aside,
+		details,
+		figcaption,
+		figure,
+		footer,
+		header,
+		menu,
+		nav,
+		section {
+			display: block;
+		}
+
+		body {
+			line-height: 1;
+		}
+
+		blockquote,
+		q {
+			quotes: none;
+		}
+
+		blockquote:before,
+		blockquote:after,
+		q:before,
+		q:after {
+			content: none;
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		/* custom */
+
+		a {
+			color: #7e8c8d;
+			text-decoration: none;
+			-webkit-backface-visibility: hidden;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		::-webkit-scrollbar {
+			width: 5px;
+			height: 5px;
+		}
+
+		::-webkit-scrollbar-track-piece {
+			background-color: rgba(0, 0, 0, 0.2);
+			-webkit-border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb:vertical {
+			height: 5px;
+			background-color: rgba(125, 125, 125, 0.7);
+			-webkit-border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb:horizontal {
+			width: 5px;
+			background-color: rgba(125, 125, 125, 0.7);
+			-webkit-border-radius: 6px;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			-webkit-text-size-adjust: none;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			background: #ededed;
+		}
+	</style>
+
+	<style>
+		*,
+		::before,
+		::after {
+			margin: 0;
+			padding: 0;
+			/*清除移动端默认的 点击高亮效果*/
+			-webkit-tap-highlight-color: transparent;
+			/*设置所有的都是以边框开始计算宽度 百分比*/
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			font-family: PingFangSC-Regular, sans-serif;
+			color: #333;
+			font-size: 0.34rem;
+			background: #f1f1f1;
+		}
+
+		a {
+			color: #333;
+		}
+
+		a,
+		a:hover {
+			text-decoration: none;
+		}
+
+		input {
+			border: none;
+			outline: none;
+			/*清除移动端默认的表单样式*/
+			-webkit-appearance: none;
+		}
+
+		ul,
+		ol {
+			list-style: none;
+		}
+
+		ul {
+			width: 90%;
+			margin: 0 auto;
+			background: #fff;
+		}
+
+		.pull-left {
+			float: left;
+		}
+
+		.pull-right {
+			float: right;
+		}
+
+		/* 清除浮动 */
+
+		.clearfix::before,
+		.clearfix::after {
+			content: "";
+			display: block;
+			clear: both;
+			line-height: 0;
+			visibility: hidden;
+			height: 0;
+		}
+
+		/*利用绝对定位宽高拉升原理，中心居中元素*/
+
+		.middle {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+		}
+
+		/*单行文本溢出显示省略号「to ==> text-overflow」*/
+
+		.to {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.jinrong,
+		.shop,
+		.life,
+		.other {
+			background: #fff;
+			padding-top: 0.3rem;
+		}
+
+		p.bianmin {
+			color: #333;
+			padding-left: 0.5rem;
+			position: relative;
+			font-size: 0.35rem;
+			height: 30px;
+			line-height: 30px;
+			margin-bottom: 5px;
+			background: #fff;
+			margin-top: 5px;
+		}
+
+		p.bianmin::before {
+			content: "";
+			position: absolute;
+			left: 0.4rem;
+			top: 3.5px;
+			height: 20px;
+			width: 2px;
+			background: #0187dd;
+		}
+
+		.jinrong .mainmenu li,
+		.shop .mainmenu li,
+		.life .mainmenu li,
+		.other .mainmenu li {
+			float: left;
+			width: 20%;
+		}
+
+		.jinrong .mainmenu li a,
+		.shop .mainmenu li a,
+		.life .mainmenu li a,
+		.other .mainmenu li a {
+			display: block;
+			width: 90%;
+			margin: 0 auto;
+		}
+
+		.jinrong .mainmenu li a img,
+		.shop .mainmenu li a img,
+		.life .mainmenu li a img,
+		.other .mainmenu li a img {
+			width: 1.2rem;
+			height: 1.2rem;
+			margin: 0 auto;
+			display: block;
+		}
+
+		.jinrong .mainmenu li span,
+		.shop .mainmenu li span,
+		.life .mainmenu li span,
+		.other .mainmenu li span {
+			display: block;
+			text-align: center;
+			font-size: 0.3rem;
+			color: #333;
+			padding: 0.1rem 0;
+		}
+
+		.swiper-slide>div>img {
+			height: 150px;
+			width: 100%;
+		}
+	</style>
+</head>
+
+
+<body>
+	<!-- 轮播部分 -->
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+
+
+	<p class="bianmin">便民服务</p>
+	<div class="shop">
+		<ul class="mainmenu clearfix">
+			<li>
+				<a href="https://m.taobao.com">
+					<img src="http://business.cdn.qianqian.com/qianqian/pic/bos_client_152447898505cd2c1e84e209941cf8e343cbb4ee2a.jpg" />
+				</a>
+				<span>淘宝</span>
+			</li>
+			<li>
+				<a href="https://m.taobao.com">
+					<img src="http://business.cdn.qianqian.com/qianqian/pic/bos_client_152447898505cd2c1e84e209941cf8e343cbb4ee2a.jpg" />
+				</a>
+				<span>淘宝</span>
+			</li>
+			<li>
+				<a href="https://m.taobao.com">
+					<img src="http://business.cdn.qianqian.com/qianqian/pic/bos_client_152447898505cd2c1e84e209941cf8e343cbb4ee2a.jpg" />
+				</a>
+				<span>淘宝</span>
+			</li>
+			<li>
+				<a href="https://m.taobao.com">
+					<img src="http://business.cdn.qianqian.com/qianqian/pic/bos_client_152447898505cd2c1e84e209941cf8e343cbb4ee2a.jpg" />
+				</a>
+				<span>淘宝</span>
+			</li>
+			<li>
+				<a href="https://m.taobao.com">
+					<img src="http://business.cdn.qianqian.com/qianqian/pic/bos_client_152447898505cd2c1e84e209941cf8e343cbb4ee2a.jpg" />
+				</a>
+				<span>淘宝</span>
+			</li>
+			<li>
+				<a href="https://m.taobao.com">
+					<img src="http://business.cdn.qianqian.com/qianqian/pic/bos_client_152447898505cd2c1e84e209941cf8e343cbb4ee2a.jpg" />
+				</a>
+				<span>淘宝</span>
+			</li>
+		</ul>
+	</div>
+
+</body>
+
+</html>
+<script>
+
+	$(document).ready(function(){
+		$.get("./a.json", {}, function (res) {
+		console.log(res)
+		var str = ""
+		$.each(res, function (index, obj) {
+			str += '<div class="swiper-slide">' +
+				'<div data-href="' + obj.href + '">' +
+				'<img src="' + obj.img + '" alt="">' +
+				'</div>' +
+				'</div>'
+		})
+		$('.swiper-wrapper').html(str);
+		var mySwiper = new Swiper(".swiper-container", {
+			updateOnImagesReady: true,
+			setWrapperSize: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false
+			}, //--每秒中轮播一次
+			loop: true, //--可以让图片循环轮播
+			autoplayDisableOnInteraction: false, //--在点击之后可以继续实现轮播
+			pagination: {
+				el: '.swiper-pagination',
+				type: 'bullets',
+			},
+			observer: true, //修改swiper自己或子元素时，自动初始化swiper
+			observeParents: true, //修改swiper的父元素时，自动初始化swiper
+			autoHeight: true,
+			preventLinksPropagation: false,
+			updateOnImagesReady: true,
+			on: {
+				tap: function (e) {
+					var href = e.target.parentNode.getAttribute('data-href')
+					console.log(href)
+					if (href) {
+						window.location.href = "jb51.jsp?backurl=" + window.location.href;
+					}else{
+						alert('链接为空不跳转')
+					}
+				}
+			},
+		})
+
+
+	});
+		
+	})
+</script>
