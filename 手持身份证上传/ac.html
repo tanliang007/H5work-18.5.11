@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<script>
+		(function () {
+			function setRem() {
+				var w = document.documentElement.clientWidth;
+				w = w > 750 ? 750 : w;
+				document.querySelector('html').style.fontSize = w / 7.5 + 'px';
+			};
+			setRem();
+			window.onresize = function () {
+				setRem();
+			};
+		})()
+	</script>
+	<style>
+		/* 通用样式 */
+
+		html,
+		body,
+		div,
+		span,
+		applet,
+		object,
+		iframe,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		blockquote,
+		pre,
+		a,
+		abbr,
+		acronym,
+		address,
+		big,
+		cite,
+		code,
+		del,
+		dfn,
+		em,
+		img,
+		ins,
+		kbd,
+		q,
+		s,
+		samp,
+		small,
+		strike,
+		strong,
+		sub,
+		sup,
+		tt,
+		var,
+		b,
+		u,
+		i,
+		center,
+		dl,
+		dt,
+		dd,
+		ol,
+		ul,
+		li,
+		fieldset,
+		form,
+		label,
+		legend,
+		table,
+		caption,
+		tbody,
+		tfoot,
+		thead,
+		tr,
+		th,
+		td,
+		article,
+		aside,
+		canvas,
+		details,
+		embed,
+		figure,
+		figcaption,
+		footer,
+		header,
+		menu,
+		nav,
+		output,
+		ruby,
+		section,
+		summary,
+		time,
+		mark,
+		audio,
+		video,
+		input {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font-weight: normal;
+			vertical-align: baseline;
+		}
+
+		/* HTML5 display-role reset for older browsers */
+
+		article,
+		aside,
+		details,
+		figcaption,
+		figure,
+		footer,
+		header,
+		menu,
+		nav,
+		section {
+			display: block;
+		}
+
+		body {
+			line-height: 1;
+		}
+
+		blockquote,
+		q {
+			quotes: none;
+		}
+
+		blockquote:before,
+		blockquote:after,
+		q:before,
+		q:after {
+			content: none;
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		/* custom */
+
+		a {
+			color: #7e8c8d;
+			text-decoration: none;
+			-webkit-backface-visibility: hidden;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		::-webkit-scrollbar {
+			width: 5px;
+			height: 5px;
+		}
+
+		::-webkit-scrollbar-track-piece {
+			background-color: rgba(0, 0, 0, 0.2);
+			-webkit-border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb:vertical {
+			height: 5px;
+			background-color: rgba(125, 125, 125, 0.7);
+			-webkit-border-radius: 6px;
+		}
+
+		::-webkit-scrollbar-thumb:horizontal {
+			width: 5px;
+			background-color: rgba(125, 125, 125, 0.7);
+			-webkit-border-radius: 6px;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			-webkit-text-size-adjust: none;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+	</style>
+	<style>
+		body {
+			background: #f5f5f5;
+		}
+
+		#imgUpload,
+		#imgUpload2 {
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+		}
+
+		.addphoto {
+			display: block;
+			width: 6rem;
+			height: 3.5rem;
+			background-image: url('./img-lic1@3x.png');
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+		}
+
+		.divpic {
+			position: relative;
+			width: 4rem;
+			height: 3rem;
+		}
+
+		.divpic #pic1 {
+			position: absolute;
+			left: 0rem;
+			top: 0;
+			width: 4rem;
+			height: 3rem;
+		}
+
+		.picbox {
+			padding-left: 0.4rem;
+			font-size: 0.35rem;
+			padding-top: 0.5rem;
+			padding-bottom: 0.5rem;
+			background: #fff;
+		}
+
+		.picbox .txt {
+			margin-bottom: 0.5rem;
+		}
+
+		.picbox .picbox-bot {
+			background: #fff;
+		}
+
+		.tip {
+			color: #4c4b4b;
+			font-size: 0.3rem;
+			padding: 0 0.4rem;
+			margin: 0.5rem 0;
+			line-height: 0.5rem;
+		}
+
+		.tjbtn {
+			width: 6rem;
+			background-color: #f7d400;
+			border-radius: 20px;
+			text-align: center;
+			font-size: 0.4rem;
+			height: 1rem;
+			line-height: 1rem;
+			margin: 50px auto;
+			color: #fff;
+		}
+
+		.toast-wrap {
+			position: fixed;
+			bottom: 50%;
+			color: #fff;
+			width: 100%;
+			text-align: center;
+		}
+
+		.toast-msg {
+			display: none;
+			background-color: rgba(0, 0, 0, 0.7);
+			padding: 10px 20px;
+			border-radius: 5px;
+			font-size: 0.4rem;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- toast -->
+	<div class="toast-wrap">
+		<span class="toast-msg"></span>
+	</div>
+	<form id="frmx" enctype="multipart/form-data" action="http://w.sohu.com/t2/upload.do" method="post">
+		<div class="picbox ">
+			<p class="txt">手持身份证照片及储蓄银行卡正面 </p>
+			<div class="picbox-bot">
+				<a class="addphoto">
+					<input type="file" id="imgUpload" name="file1" draggable="false" accept="image/*">
+				</a>
+			</div>
+			<!--允许file控件接受的文件类型  single  multiple-->
+		</div>
+		<div class='tip'>*温馨提示: 应上游通道的指示,快捷需要补充实名认证的资料</div>
+		<div class="tjbtn" onclick="sendPic()">提交</div>
+	</form>
+	<script src="js/cssfix.js"></script>
+	<script src="js/jquery-1.10.1.min.js"></script>
+	<script src="js/base.js"></script>
+	<script>
+		$(function () {
+			previewImage()
+			//单张图片上传，只考虑支持FileReader接口的浏览器
+
+			function previewImage() {
+
+				//判断浏览器是否有FileReader接口
+				if (typeof FileReader == 'undefined') {
+					// 不支持FileReader
+					console.log('不支持FileReader预览图片')
+					//如果浏览器是ie
+					if ($.browser.msie === true) {
+
+					}
+					//如果是不支持FileReader接口的低版本firefox 可以用getAsDataURL接口
+					else if ($.browser.mozilla === true) {
+
+					}
+				} else { //支持FileReader接口  
+					showPicture();
+				}
+			}
+
+			//图片预览
+			function showPicture() {
+
+				$("#imgUpload").change(
+					function (e) {
+						for (var i = 0; i < e.target.files.length; i++) {
+							var file = e.target.files.item(i);
+							console.log(file.size)
+							//允许文件MIME类型 也可以在input标签中指定accept属性
+							//console.log(/^image\/.*$/i.test(file.type));
+							if (!(/^image\/.*$/i.test(file.type))) {
+								continue; //不是图片 就跳出这一次循环
+							}
+							//实例化FileReader API
+							var freader = new FileReader();
+							freader.readAsDataURL(file);
+							freader.onload = function (e) {
+								console.log(e.target.result);
+								var cssobj = {
+									'background-image': 'url(' + e.target.result + ')',
+									'background-repeat': 'no-repeat',
+									'background-size': '100% 100%',
+									'padding': '2px 5px'
+								}
+								$('.addphoto').css(cssobj)
+							}
+						}
+					});
+
+			}
+
+			// 表单提交事件
+			function sendPic() {
+				console.log($("#imgUpload").prop('files'))
+				if ($("#imgUpload").prop('files').length == 0) {
+					toast('请选择一张图片');
+					return false;
+				}
+				$('#frmx').submit()
+			}
+			
+			function toast(msg) {
+				$('.toast-wrap .toast-msg').html(msg);
+				$('.toast-wrap .toast-msg').show();
+
+				setTimeout(function () {
+					$('.toast-wrap .toast-msg').hide();
+				}, 1000);
+			}
+			// ajax和fromdata对象提交数据
+			function upload() {
+				console.log('上传触发了')
+				$.ajax({
+					// headers: {
+					// 	//Bearer是我的项目需要的,你可以按你的需求规范格式
+					// 	'token': 'bf9acbb85f3fd3602c53e97f0bc40f2a8861',
+					// },
+					type: 'POST',
+					dataType: "json",
+					url: "http://172.31.0.117:8081/ejl-platform-web-api/user/avatar_mod",
+					data: formData,
+					cache: false,
+					processData: false,
+					contentType: false,
+					error: function (XMLHttpRequest, textStatus, errorThrown) {
+						//错误访问所需执行的操作
+					},
+					success: function (data) {
+						//正确访问所需执行的操作
+						console.log(data)
+					}
+				})
+			}
+		});
+	</script>
+</body>
+
+</html>
